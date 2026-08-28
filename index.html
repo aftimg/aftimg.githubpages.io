@@ -1,206 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Profile: Chris Delp</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f4f7f6;
-        }
-        header {
-            text-align: center;
-            padding: 20px 0;
-        }
-        h1 {
-            color: #0b3d91; /* NASA Blue */
-            margin-bottom: 5px;
-        }
-        .subtitle {
-            font-size: 1.2em;
-            color: #555;
-            margin-top: 0;
-        }
-        .tags {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin: 20px 0;
-        }
-        .tag {
-            background: #0b3d91;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.9em;
-            font-weight: bold;
-            letter-spacing: 0.5px;
-        }
-        .card {
-            background: white;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        h2 {
-            color: #fc3d21; /* NASA Red */
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-            margin-top: 0;
-        }
-        ul {
-            padding-left: 20px;
-        }
-        li {
-            margin-bottom: 15px;
-        }
-        a {
-            color: #0b3d91;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .authors {
-            font-size: 0.9em;
-            color: #666;
-            margin-top: 3px;
-            display: block;
-        }
-        .presentation-focus {
-            font-size: 0.95em;
-            color: #444;
-            margin-top: 5px;
-            display: block;
-        }
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 0.9em;
-            color: #777;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christopher Delp — Systems &amp; Digital Engineering, NASA JPL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-0:#0A1220;
+    --bg-1:#0F1A2C;
+    --bg-2:#132238;
+    --line:#2C4362;
+    --line-soft:#1C2F49;
+    --text-hi:#E9EFF7;
+    --text-mid:#AEC0D8;
+    --text-low:#6E85A4;
+    --accent:#FF5A2E;
+    --accent-dim:#B23F1F;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--bg-0),var(--bg-0)),
+      repeating-linear-gradient(0deg, var(--line-soft) 0 1px, transparent 1px 88px),
+      repeating-linear-gradient(90deg, var(--line-soft) 0 1px, transparent 1px 88px);
+    color:var(--text-hi);
+    font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  a{color:inherit;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 32px;}
+
+  /* ---------- Top bar ---------- */
+  header.topbar{
+    position:sticky; top:0; z-index:20;
+    background:rgba(10,18,32,0.86);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    max-width:1040px;margin:0 auto;padding:16px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .brand{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;font-size:15px;letter-spacing:0.02em;
+  }
+  .brand .dot{color:var(--accent);}
+  nav.toplinks{display:flex;gap:28px;}
+  nav.toplinks a{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:0.06em;text-transform:uppercase;
+    color:var(--text-mid);text-decoration:none;
+    padding-bottom:2px;border-bottom:1px solid transparent;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  nav.toplinks a:hover, nav.toplinks a:focus-visible{color:var(--text-hi);border-color:var(--accent);}
+  @media (max-width:640px){ nav.toplinks{display:none;} }
+
+  /* ---------- Hero ---------- */
+  .hero{padding:96px 0 72px; position:relative;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace; font-size:12px;
+    letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+    display:flex; align-items:center; gap:10px; margin-bottom:22px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--accent);display:inline-block;}
+  h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:clamp(34px, 5.4vw, 58px);
+    line-height:1.05;
+    letter-spacing:-0.01em;
+    margin:0 0 18px;
+  }
+  h1 span{color:var(--text-mid);font-weight:500;}
+  .role{
+    font-size:18px; color:var(--text-mid); max-width:620px; margin:0 0 34px; line-height:1.5;
+  }
+  .role strong{color:var(--text-hi);font-weight:600;}
+  .hero-tags{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px;}
+  .tag{
+    font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.03em;
+    color:var(--text-mid); border:1px solid var(--line); border-radius:var(--radius);
+    padding:6px 10px;
+  }
+
+  /* ---------- Signature diagram ---------- */
+  .diagram-frame{
+    margin-top:56px; border:1px solid var(--line); border-radius:4px;
+    background:linear-gradient(180deg, var(--bg-1), var(--bg-0));
+    padding:28px 24px 20px; position:relative; overflow:hidden;
+  }
+  .diagram-label{
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-low);
+    letter-spacing:0.08em; text-transform:uppercase; margin-bottom:14px;
+  }
+  svg.system-map{width:100%;height:auto;display:block;}
+  .sm-line{
+    stroke:var(--line); stroke-width:1; fill:none;
+    stroke-dasharray:400; stroke-dashoffset:400;
+    animation:draw 1.4s ease forwards;
+  }
+  .sm-line.accent{stroke:var(--accent-dim);}
+  .sm-node-ring{fill:none;stroke:var(--line);stroke-width:1;}
+  .sm-node-core{fill:var(--bg-1);stroke:var(--text-low);stroke-width:1;}
+  .sm-node-core.center{stroke:var(--accent);fill:#1a1108;}
+  .sm-node-label{font-family:'JetBrains Mono',monospace;font-size:10.5px;fill:var(--text-mid);}
+  .sm-node-label.center{fill:var(--text-hi);font-weight:500;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+
+  /* ---------- Section shell ---------- */
+  section{padding:64px 0;border-top:1px solid var(--line-soft);}
+  .section-head{
+    display:flex; align-items:baseline; gap:16px; margin-bottom:36px;
+  }
+  .section-num{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:13px;}
+  h2{
+    font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:24px; margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  /* ---------- About ---------- */
+  .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;}
+  @media (max-width:760px){.about-grid{grid-template-columns:1fr;}}
+  .about p{color:var(--text-mid); line-height:1.75; font-size:15.5px; margin:0 0 18px;}
+  .about p strong{color:var(--text-hi);font-weight:600;}
+  .stat-panel{border:1px solid var(--line); border-radius:4px; padding:22px; background:var(--bg-1); height:fit-content;}
+  .stat{padding:14px 0;border-bottom:1px solid var(--line-soft);}
+  .stat:last-child{border-bottom:none;padding-bottom:0;}
+  .stat:first-child{padding-top:0;}
+  .stat-value{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:26px;color:var(--text-hi);}
+  .stat-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-low);letter-spacing:0.05em;text-transform:uppercase;margin-top:4px;}
+
+  /* ---------- Expertise ---------- */
+  .exp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);}
+  @media (max-width:640px){.exp-grid{grid-template-columns:1fr;}}
+  .exp-card{background:var(--bg-1); padding:26px 24px;}
+  .exp-index{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:10px;}
+  .exp-title{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;margin-bottom:8px;}
+  .exp-desc{color:var(--text-mid);font-size:14px;line-height:1.6;margin:0;}
+
+  /* ---------- Timeline / notable work ---------- */
+  .timeline{border-left:1px solid var(--line);margin-left:6px;}
+  .t-item{position:relative;padding:0 0 40px 32px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{
+    content:"";position:absolute;left:-5px;top:2px;width:9px;height:9px;
+    border-radius:50%;background:var(--bg-0);border:1px solid var(--accent);
+  }
+  .t-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:6px;}
+  .t-title{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;margin-bottom:8px;}
+  .t-desc{color:var(--text-mid);font-size:14.5px;line-height:1.65;max-width:640px;margin:0;}
+
+  /* ---------- Footer / contact ---------- */
+  footer{border-top:1px solid var(--line-soft);padding:56px 0 40px;}
+  .footer-grid{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;}
+  .footer-org{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-low);line-height:1.8;}
+  .footer-org strong{color:var(--text-mid);}
+  .back-top{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;
+    color:var(--text-low);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px;
+  }
+  .back-top:hover{color:var(--accent);border-color:var(--accent);}
+</style>
 </head>
 <body>
 
-    <header>
-        <h1>Chris Delp</h1>
-        <p class="subtitle">Systems Engineer & MBSE Pioneer</p>
-        <div class="tags">
-            <span class="tag">NASA</span>
-            <span class="tag">JPL</span>
-            <span class="tag">Caltech CTME</span>
-            <span class="tag">INCOSE</span>
-            <span class="tag">OMG</span>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">DELP<span class="dot">·</span>SYS</div>
+    <nav class="toplinks">
+      <a href="#about">About</a>
+      <a href="#focus">Focus</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" id="top">
+    <div class="eyebrow mono">Systems &amp; Digital Engineering</div>
+    <h1>Christopher Delp<br><span>Model-Based Systems Engineering</span></h1>
+    <p class="role">
+      An industry-recognized leader in <strong>Digital Engineering, Model-Based Systems Engineering,
+      and open-source practice for systems engineering</strong>. With more than 25 years of experience
+      spanning systems architecture, safety-critical software, and model-based engineering environments,
+      his work has helped move the discipline itself toward open, model-centric ways of working.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">MBSE / MBE</span>
+      <span class="tag">Digital Engineering</span>
+      <span class="tag">Systems Architecture</span>
+      <span class="tag">Safety-Critical Software</span>
+      <span class="tag">Open Source for SE</span>
+    </div>
+
+    <div class="diagram-frame">
+      <div class="diagram-label">Practice Map — Domains of Work</div>
+      <svg class="system-map" viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram connecting Christopher Delp's areas of practice around a central node labeled JPL Flight Projects">
+        <path class="sm-line accent" d="M430,150 L180,70" />
+        <path class="sm-line accent" d="M430,150 L680,60" />
+        <path class="sm-line accent" d="M430,150 L150,220" />
+        <path class="sm-line accent" d="M430,150 L700,225" />
+        <path class="sm-line accent" d="M430,150 L430,255" />
+        <path class="sm-line" d="M180,70 L150,220" />
+        <path class="sm-line" d="M680,60 L700,225" />
+
+        <circle class="sm-node-ring" cx="430" cy="150" r="34" />
+        <circle class="sm-node-core center" cx="430" cy="150" r="24" />
+        <text class="sm-node-label center" x="430" y="147" text-anchor="middle">JPL</text>
+        <text class="sm-node-label center" x="430" y="160" text-anchor="middle" style="font-size:8.5px;">FLIGHT PROJECTS</text>
+
+        <circle class="sm-node-core" cx="180" cy="70" r="20" />
+        <text class="sm-node-label" x="180" y="42" text-anchor="middle">MBSE</text>
+
+        <circle class="sm-node-core" cx="680" cy="60" r="20" />
+        <text class="sm-node-label" x="680" y="32" text-anchor="middle">DIGITAL ENG.</text>
+
+        <circle class="sm-node-core" cx="150" cy="220" r="20" />
+        <text class="sm-node-label" x="150" y="260" text-anchor="middle">SW ENGINEERING</text>
+
+        <circle class="sm-node-core" cx="700" cy="225" r="20" />
+        <text class="sm-node-label" x="700" y="265" text-anchor="middle">OPEN SOURCE SE</text>
+
+        <circle class="sm-node-core" cx="430" cy="255" r="20" />
+        <text class="sm-node-label" x="430" y="288" text-anchor="middle">SYSTEM ARCHITECTURE</text>
+      </svg>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-head">
+      <span class="section-num mono">01</span>
+      <h2>About</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about">
+        <p>
+          Christopher Delp is recognized industry-wide for his leadership in
+          <strong>Digital Engineering, Model-Based Systems Engineering, and open-source tooling for
+          systems engineering</strong>. Across more than 25 years on JPL flight projects, his work has
+          spanned system architecture and design, safety-critical software development and test, and
+          the application of systems engineering discipline across the full project lifecycle.
+        </p>
+        <p>
+          He has played a leading role in JPL's transition to MBSE and digital engineering practice,
+          including a multi-year effort to rearchitect JPL's Model-Based Engineering enterprise for
+          Systems and Software Engineering within the lab's Computer-Aided Engineering program — building
+          a modern, open environment for system modeling, analysis, and simulation.
+        </p>
+        <p>
+          He co-founded <strong>OpenMBEE</strong>, an open-source initiative for model-based engineering
+          environments, and leads the <strong>INCOSE Model-Based Environments workshop</strong>, with a
+          continued focus on open-source approaches to systems modeling.
+        </p>
+      </div>
+      <div class="stat-panel">
+        <div class="stat">
+          <div class="stat-value">25+ yrs</div>
+          <div class="stat-label">JPL Flight Projects</div>
         </div>
-    </header>
-
-    <div class="card">
-        <h2>About</h2>
-        <p>Chris Delp is a highly regarded Systems Engineer specializing in <strong>Model-Based Systems Engineering (MBSE)</strong>. Throughout his career, he has been instrumental in advancing the discipline of systems engineering for complex space missions and actively contributes to the global standards and educational programs that shape the future of the field.</p>
+        <div class="stat">
+          <div class="stat-value">OpenMBEE</div>
+          <div class="stat-label">Co-Founder</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">INCOSE</div>
+          <div class="stat-label">MBE Workshop Lead</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">JPL / Caltech</div>
+          <div class="stat-label">NASA FFRDC</div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-        <h2>Professional Affiliations & Contributions</h2>
-        <ul>
-            <li><strong>NASA Jet Propulsion Laboratory (JPL):</strong> Chris plays a critical role at NASA JPL, applying advanced systems engineering and MBSE methodologies to deep space exploration missions. His work helps manage the immense complexity of robotic spacecraft, ensuring mission success through rigorous modeling and simulation.</li>
-            <li><strong>Caltech CTME (Center for Technology and Management Education):</strong> As an instructor and subject matter expert at Caltech CTME, Chris helps educate the next generation of engineers and industry professionals. He teaches professional development programs focused on Systems Engineering, Systems Architecture, and MBSE, bridging the gap between theoretical models and practical, aerospace-grade application.</li>
-            <li><strong>INCOSE (International Council on Systems Engineering):</strong> An active contributor to INCOSE, Chris helps drive the global dialogue on systems engineering best practices. He is heavily involved in the MBSE initiative, helping organizations transition from document-centric to model-centric engineering.</li>
-            <li><strong>OMG (Object Management Group):</strong> Chris has been a pivotal figure in the development and standardization of systems modeling languages. Through OMG, he has contributed to the evolution of <strong>SysML (Systems Modeling Language)</strong>, providing the technical leadership necessary to ensure the language meets the rigorous demands of real-world aerospace and defense applications.</li>
-        </ul>
+  <section id="focus">
+    <div class="section-head">
+      <span class="section-num mono">02</span>
+      <h2>Areas of Focus</h2>
     </div>
-
-    <div class="card">
-        <h2>Key Lead-Author Publications</h2>
-        <p>A selection of technical and academic papers authored by Chris Delp as the lead researcher while at JPL, focusing on Model-Based Systems Engineering and mission operations:</p>
-        <ul>
-            <li>
-                <a href="https://www.omg.org/sysml/View_Paper-IEEE_2013.pdf" target="_blank">Model Based Document and Report Generation for Systems Engineering</a> 
-                (IEEE Aerospace Conference, 2013)
-                <span class="authors">Authors: Christopher Delp, Doris Lam, Elyse Fosse, Cin-Young Lee</span>
-            </li>
-            <li>
-                <strong>Model-Based Systems Engineering Approach to Managing Mass Margin</strong> 
-                (5th International Workshop on Systems & Concurrent Engineering for Space Applications (SECESA), 2012)
-                <span class="authors">Authors: Christopher Delp, Doris Lam</span>
-            </li>
-            <li>
-                <a href="https://www.researchgate.net/publication/224229324_MOS_20_-_modeling_the_next_revolutionary_Mission_Operations_System" target="_blank">MOS 2.0 - Modeling the Next Revolutionary Mission Operations System</a> 
-                (IEEE Aerospace Conference, 2011)
-                <span class="authors">Authors: Christopher L. Delp, Duane Bindschadler, Ryan Wollaeger, Carlos Carrion, Michelle McCullar, Maddalena Jackson, Marc Sarrel, Louise Anderson, Doris Lam</span>
-            </li>
-            <li>
-                <strong>INCOSE Model Based Systems Engineering Challenge. Contribution of the Space Systems Working Group. V3.0</strong> 
-                (INCOSE, 2009)
-                <span class="authors">Authors: Christopher Delp et al.</span>
-            </li>
-        </ul>
+    <div class="exp-grid">
+      <div class="exp-card">
+        <div class="exp-index mono">A</div>
+        <div class="exp-title">Model-Based Systems Engineering</div>
+        <p class="exp-desc">Advancing MBSE and Model-Based Engineering practice and environments across JPL's flight project lifecycle.</p>
+      </div>
+      <div class="exp-card">
+        <div class="exp-index mono">B</div>
+        <div class="exp-title">Digital Engineering Environments</div>
+        <p class="exp-desc">Architecting open, model-centric engineering environments for system modeling, analysis, and simulation.</p>
+      </div>
+      <div class="exp-card">
+        <div class="exp-index mono">C</div>
+        <div class="exp-title">Systems &amp; Software Architecture</div>
+        <p class="exp-desc">System architecture and design, and development and test of safety-critical flight software.</p>
+      </div>
+      <div class="exp-card">
+        <div class="exp-index mono">D</div>
+        <div class="exp-title">Open Source for Systems Engineering</div>
+        <p class="exp-desc">Co-founding and steering open-source tooling that brings model-based practice to the broader SE community.</p>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-        <h2>Selected Co-Authored Publications</h2>
-        <p>A selection of notable papers and publications where Chris Delp contributed as a supporting author alongside other researchers at JPL and partner organizations:</p>
-        <ul>
-            <li>
-                <a href="http://www.omgsysml.org/Applying_MBSE_to_a_Standard_CubeSat-Space_Systems_Challenge_Team.pdf" target="_blank">Applying Model Based Systems Engineering (MBSE) to a Standard CubeSat</a> 
-                (IEEE Aerospace Conference, 2012)
-                <span class="authors">Authors: Sara C. Spangelo, David Kaslow, Christopher Delp, Bjorn Cole, Louise Anderson, et al.</span>
-            </li>
-            <li>
-                <a href="https://ieeexplore.ieee.org/document/10115598" target="_blank">Towards a Model-Based Product Development Process from Early Concepts to Engineering Implementation</a> 
-                (IEEE Aerospace Conference, 2023)
-                <span class="authors">Authors: Robert Karban, Steven Ardito, Myra Lattimore, Christopher Delp</span>
-            </li>
-            <li>
-                <a href="https://www.researchgate.net/publication/224130905_An_Operations_Concept_for_Integrated_Model-Centric_Engineering_at_JPL" target="_blank">An Operations Concept for Integrated Model-Centric Engineering at JPL</a> 
-                (IEEE Aerospace Conference, 2011)
-                <span class="authors">Authors: Todd J. Bayer, Matthew Bennett, Christopher L. Delp, Daniel Dvorak, J. Steven Jenkins, Sanda Mandutianu</span>
-            </li>
-            <li>
-                <strong>Systems Engineering Interfaces: A Model Based Approach</strong> 
-                (IEEE Aerospace Conference, 2014)
-                <span class="authors">Authors: Elyse Fosse, Christopher Delp</span>
-            </li>
-        </ul>
+  <section id="work">
+    <div class="section-head">
+      <span class="section-num mono">03</span>
+      <h2>Notable Work</h2>
     </div>
-
-    <div class="card">
-        <h2>Selected Presentations & Workshops</h2>
-        <p>A selection of notable presentations, keynotes, and workshops led or organized by Chris Delp at major engineering conferences and consortiums:</p>
-        <ul>
-            <li>
-                <strong>OpenMBEE Workshop & Digital Ecosystems (DECO)</strong> 
-                (INCOSE International Workshop)
-                <span class="authors">Role: Organizing Committee Lead (JPL) & Presenter</span>
-                <span class="presentation-focus">Focus: Continuous Integration for Systems Engineering, OpenMBEE architecture, SysML v2 tooling, and broad industry adoption of digital ecosystems.</span>
-            </li>
-            <li>
-                <strong>Modern Space Systems Architecture & AI in MBSE</strong> 
-                (INCOSE Joint Technical Conference)
-                <span class="authors">Role: Presenter (Caltech/JPL)</span>
-                <span class="presentation-focus">Focus: Applying Large Language Models (LLMs) to modernize Model-Based Systems Engineering and streamline space systems architecture.</span>
-            </li>
-            <li>
-                <strong>Digital Lifecycle Solutions and the JPL Dragon Architecture</strong> 
-                (Various JPL & Caltech CTME Symposia)
-                <span class="authors">Role: Subject Matter Expert & Presenter</span>
-                <span class="presentation-focus">Focus: Data-driven cost control, scaling digital frameworks for major missions (like Mars 2020 and Europa Clipper), and transitioning to model-centric engineering.</span>
-            </li>
-        </ul>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-tag mono">Leadership</div>
+        <div class="t-title">Technical Group Supervisor, Systems Product Solutions Engineering</div>
+        <p class="t-desc">Leads a group building robust, model-based software environments that deliver digital engineering solutions across JPL.</p>
+      </div>
+      <div class="t-item">
+        <div class="t-tag mono">Mission</div>
+        <div class="t-title">Europa Clipper — Model Environment Development</div>
+        <p class="t-desc">Spearheaded the development of the model-based engineering environment supporting the Europa Clipper mission.</p>
+      </div>
+      <div class="t-item">
+        <div class="t-tag mono">Enterprise Initiative</div>
+        <div class="t-title">JPL Computer-Aided Engineering — MBE Rearchitecture</div>
+        <p class="t-desc">Led a multi-year effort rearchitecting JPL's Model-Based Engineering enterprise for Systems and Software Engineering, grounded in open engineering principles.</p>
+      </div>
+      <div class="t-item">
+        <div class="t-tag mono">Open Source</div>
+        <div class="t-title">OpenMBEE</div>
+        <p class="t-desc">Co-founded the open-source project bringing model-based engineering environments to the wider engineering community.</p>
+      </div>
+      <div class="t-item">
+        <div class="t-tag mono">Community</div>
+        <div class="t-title">INCOSE Model-Based Environments Workshop</div>
+        <p class="t-desc">Leads the workshop with a continuing focus on open-source modeling approaches for systems engineering practitioners.</p>
+      </div>
     </div>
+  </section>
 
-    <footer>
-        <p>Profile generated highlighting professional expertise in Model-Based Systems Engineering.</p>
-    </footer>
+</main>
+
+<footer id="contact">
+  <div class="wrap footer-grid">
+    <div class="footer-org">
+      <strong>Christopher Delp</strong><br>
+      Systems Product Solutions Engineering<br>
+      NASA Jet Propulsion Laboratory — managed by Caltech<br>
+      Pasadena, California
+    </div>
+    <a class="back-top" href="#top">↑ Back to top</a>
+  </div>
+</footer>
 
 </body>
 </html>
